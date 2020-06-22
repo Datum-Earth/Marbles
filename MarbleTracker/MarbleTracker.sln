@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Identity.Web", "MarbleTracker.Identity.Web\MarbleTracker.Identity.Web.csproj", "{0E352723-EE97-4625-B596-1A65FCB14830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Identity.Data", "MarbleTracker.Identity.Data\MarbleTracker.Identity.Data.csproj", "{02D1B68D-5A03-4668-9772-652555B42159}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E352723-EE97-4625-B596-1A65FCB14830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E352723-EE97-4625-B596-1A65FCB14830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E352723-EE97-4625-B596-1A65FCB14830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E352723-EE97-4625-B596-1A65FCB14830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02D1B68D-5A03-4668-9772-652555B42159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D1B68D-5A03-4668-9772-652555B42159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D1B68D-5A03-4668-9772-652555B42159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D1B68D-5A03-4668-9772-652555B42159}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AACC6001-538E-4C9C-8F08-00E21778A537}
+	EndGlobalSection
+EndGlobal

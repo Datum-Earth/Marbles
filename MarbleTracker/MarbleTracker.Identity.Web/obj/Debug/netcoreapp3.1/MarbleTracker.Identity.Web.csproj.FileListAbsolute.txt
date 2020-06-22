@@ -1,0 +1,10 @@
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\bin\Debug\netcoreapp3.1\MarbleTracker.Identity.Web.exe
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Web.csprojAssemblyReference.cache
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Web.AssemblyInfoInputs.cache
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Web.AssemblyInfo.cs
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Web.RazorTargetAssemblyInfo.cache
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\staticwebassets\MarbleTracker.Identity.Web.StaticWebAssets.Manifest.cache
+D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Web\obj\Debug\netcoreapp3.1\staticwebassets\MarbleTracker.Identity.Web.StaticWebAssets.xml

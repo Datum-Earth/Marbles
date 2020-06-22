@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tcTUUOEG4s7ZNuaY0OS+tqoD3apDhFaoFw39OXK5flfsAqLqZfWPFrI36y3HBZl23OQ0qlQgloiXlqLnIBl5Yw==",
+  "success": true,
+  "projectFilePath": "D:\\Dev\\Marbles\\Marbles\\MarbleTracker\\MarbleTracker.Identity.Web\\MarbleTracker.Identity.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ryane\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512"
+  ],
+  "logs": []
+}
