@@ -4,10 +4,9 @@ using System.Text;
 
 namespace MarbleTracker.Identity.Data.Model
 {
-    public class UserClaim : EntityMetadata
+    public class UserIdentity
     {
         public User User { get; set; }
-        public Claim Claim { get; set; }
-        public bool IsActive { get; set; }
+        public IEnumerable<Claim> Claims { get; set; }
     }
 }

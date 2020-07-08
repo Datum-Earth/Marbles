@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Identity.Web"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Identity.Data", "MarbleTracker.Identity.Data\MarbleTracker.Identity.Data.csproj", "{02D1B68D-5A03-4668-9772-652555B42159}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Crypto", "MarbleTracker.Crypto\MarbleTracker.Crypto.csproj", "{F6010F6C-8F9D-4694-853E-65FC15DF40BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{02D1B68D-5A03-4668-9772-652555B42159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D1B68D-5A03-4668-9772-652555B42159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D1B68D-5A03-4668-9772-652555B42159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6010F6C-8F9D-4694-853E-65FC15DF40BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6010F6C-8F9D-4694-853E-65FC15DF40BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6010F6C-8F9D-4694-853E-65FC15DF40BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6010F6C-8F9D-4694-853E-65FC15DF40BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
