@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MarbleTracker.Identity.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Identity")]
     [ApiController]
     public class IdentityController : ControllerBase
     {
         [HttpGet]
+        [Route("GetIdentity")]
         public UserIdentity Get(string token)
         {
             return new UserIdentity()
