@@ -1,9 +1,0 @@
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\bin\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.deps.json
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\bin\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.dll
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.csprojAssemblyReference.cache
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.AssemblyInfoInputs.cache
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.AssemblyInfo.cs
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\bin\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.pdb
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.csproj.CoreCompileInputs.cache
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.dll
-D:\Dev\Marbles\Marbles\MarbleTracker\MarbleTracker.Identity.Data\obj\Debug\netcoreapp3.1\MarbleTracker.Identity.Data.pdb
