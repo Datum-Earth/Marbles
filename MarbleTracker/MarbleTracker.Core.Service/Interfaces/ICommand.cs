@@ -8,10 +8,11 @@ namespace MarbleTracker.Core.Service.Interfaces
     {
         string Name { get; }
         string Description { get; }
+        bool IsHidden { get; }
 
         IEnumerable<KeyValuePair<string, string>> Arguments { get; }
 
-        T Execute<T>();
+        string Execute();
         string GetHelpMessage();
     }
 }

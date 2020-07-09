@@ -11,11 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTracker.Crypto", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTracker.Core.Web", "src\MarbleTracker.Core.Web\MarbleTracker.Core.Web.csproj", "{461AB5DF-4DA0-4D7F-907A-67A9C101B18E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Core.Data", "MarbleTracker.Core.Data\MarbleTracker.Core.Data.csproj", "{29998211-C711-4905-BFC6-CAA8F8CC14FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTracker.Core.Data", "MarbleTracker.Core.Data\MarbleTracker.Core.Data.csproj", "{29998211-C711-4905-BFC6-CAA8F8CC14FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Core.Service", "MarbleTracker.Core.Service\MarbleTracker.Core.Service.csproj", "{7C4981A5-512C-47A9-AEE6-A58E3ADFEAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTracker.Core.Service", "MarbleTracker.Core.Service\MarbleTracker.Core.Service.csproj", "{7C4981A5-512C-47A9-AEE6-A58E3ADFEAB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.Core.Service.Test", "src\MarbleTracker.Core.Service.Test\MarbleTracker.Core.Service.Test.csproj", "{27660286-B64D-4B8C-926E-64CDC7B8482E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarbleTracker.Core.Service.Test", "src\MarbleTracker.Core.Service.Test\MarbleTracker.Core.Service.Test.csproj", "{27660286-B64D-4B8C-926E-64CDC7B8482E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleTracker.CLI", "src\MarbleTracker.CLI\MarbleTracker.CLI.csproj", "{0319B350-BB6E-49FE-92F9-6AA30DF0E6A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{27660286-B64D-4B8C-926E-64CDC7B8482E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27660286-B64D-4B8C-926E-64CDC7B8482E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27660286-B64D-4B8C-926E-64CDC7B8482E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0319B350-BB6E-49FE-92F9-6AA30DF0E6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0319B350-BB6E-49FE-92F9-6AA30DF0E6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0319B350-BB6E-49FE-92F9-6AA30DF0E6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0319B350-BB6E-49FE-92F9-6AA30DF0E6A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

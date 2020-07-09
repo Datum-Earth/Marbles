@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MarbleTracker.Core.Service
 {
-    public class CommandFactory
+    public class CommandFactory : ICommandFactory
     {
         ICommandParser<CommandSkeleton> Parser;
 
@@ -14,13 +14,7 @@ namespace MarbleTracker.Core.Service
         {
             this.Parser = parser;
         }
-
-        public T Execute<T>(string input)
-        {
-            var command = this.GetCommand(input);
-            return command.Execute<T>();
-        }
-
+        
         public ICommand GetCommand(string input)
         {
             var parsed = this.Parser.GetCommand(input);
@@ -34,6 +28,8 @@ namespace MarbleTracker.Core.Service
             {
                 case "get-history":
                     return new GetHistoryCommand(parsed.Value.Arguments);
+                case "do-test":
+                    return new TestCommand(parsed.Value.Arguments);
                 default:
                     throw new NotSupportedException();
             }

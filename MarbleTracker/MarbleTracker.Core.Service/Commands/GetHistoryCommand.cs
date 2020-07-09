@@ -9,6 +9,7 @@ namespace MarbleTracker.Core.Service.Commands
     {
         public string Name => "get-history";
         public string Description => "Use to retrieve n last wagers for a given user, in descending order.";
+        public bool IsHidden => false;
         public IEnumerable<KeyValuePair<string, string>> Arguments { get; }
 
         public GetHistoryCommand(IEnumerable<KeyValuePair<string, string>> args)
@@ -16,7 +17,7 @@ namespace MarbleTracker.Core.Service.Commands
             this.Arguments = args;
         }
 
-        public T Execute<T>()
+        public string Execute()
         {
             throw new NotImplementedException();
         }
