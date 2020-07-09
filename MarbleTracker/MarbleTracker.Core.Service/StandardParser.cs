@@ -77,10 +77,11 @@ namespace MarbleTracker.Core.Service
 
                         keyBuilder.Clear();
                         valueBuilder.Clear();
-                    }
 
-                    // if the key isn't complete, then we've just finished our key. Start building our value.
-                    if (!keyBuilt)
+                        keyBuilt = false;
+                        continue; // no need to inclue the delimiter
+                    }
+                    else // if the key isn't complete, then we've just finished our key. Start building our value.
                     {
                         keyBuilt = true;
                         continue; // no need to include the delimiter

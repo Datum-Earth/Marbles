@@ -6,7 +6,7 @@ using System.Linq;
 namespace MarbleTracker.Core.Service.Test
 {
     [TestClass]
-    public class ParsingTests
+    public class Parsing
     {
         private List<string> Cases => new List<string>()
         {
@@ -14,13 +14,55 @@ namespace MarbleTracker.Core.Service.Test
         };
 
         [TestMethod]
-        public void Case1()
+        public void SingleArgumentLongForm()
         {
             var input = "get-history --username @datum-earth";
 
             var expected = new ParseResult<CommandSkeleton>()
             {
                 Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("--username", "@datum-earth") }),
+                Successful = true,
+                Error = null
+            };
+
+            var parser = new StandardParser();
+
+            var actual = parser.GetCommand(input);
+
+            Assert.IsTrue(ResultsAreEqual(expected, actual));
+        }
+
+        [TestMethod]
+        public void SingleArgumentShortForm()
+        {
+            var input = "get-history -u @datum-earth";
+
+            var expected = new ParseResult<CommandSkeleton>()
+            {
+                Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>() { new KeyValuePair<string, string>("-u", "@datum-earth") }),
+                Successful = true,
+                Error = null
+            };
+
+            var parser = new StandardParser();
+
+            var actual = parser.GetCommand(input);
+
+            Assert.IsTrue(ResultsAreEqual(expected, actual));
+        }
+
+        [TestMethod]
+        public void TwoArgumentsLongForm()
+        {
+            var input = "get-history --username @datum-earth --take 20";
+
+            var expected = new ParseResult<CommandSkeleton>()
+            {
+                Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>() 
+                { 
+                    new KeyValuePair<string, string>("--username", "@datum-earth"),
+                    new KeyValuePair<string, string>("--take", "20")
+                }),
                 Successful = true,
                 Error = null
             };
