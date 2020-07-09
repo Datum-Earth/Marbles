@@ -15,6 +15,12 @@ namespace MarbleTracker.Core.Service
             this.Parser = parser;
         }
 
+        public T Execute<T>(string input)
+        {
+            var command = this.GetCommand(input);
+            return command.Execute<T>();
+        }
+
         public ICommand GetCommand(string input)
         {
             var parsed = this.Parser.GetCommand(input);
@@ -24,7 +30,7 @@ namespace MarbleTracker.Core.Service
                 throw new ArgumentOutOfRangeException();
             }
 
-            switch (parsed.Value.CommandName.ToLower())
+            switch (parsed.Value.CommandName)
             {
                 case "get-history":
                     return new GetHistoryCommand(parsed.Value.Arguments);

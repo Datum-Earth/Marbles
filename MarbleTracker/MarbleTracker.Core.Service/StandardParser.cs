@@ -35,7 +35,7 @@ namespace MarbleTracker.Core.Service
         private CommandSkeleton Parse(string input)
         {
             var split = input.Split(DELIMITER);
-            var commandName = split[0];
+            var commandName = split[0].ToLower();
             var recombination = input.Replace(commandName, "").Trim();
 
             var args = GetArguments(recombination);
