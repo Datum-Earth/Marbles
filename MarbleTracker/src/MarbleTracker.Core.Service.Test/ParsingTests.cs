@@ -74,6 +74,74 @@ namespace MarbleTracker.Core.Service.Test
             Assert.IsTrue(ResultsAreEqual(expected, actual));
         }
 
+        [TestMethod]
+        public void TwoArgumentsShortForm()
+        {
+            var input = "get-history -u @datum-earth -t 20";
+
+            var expected = new ParseResult<CommandSkeleton>()
+            {
+                Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("-u", "@datum-earth"),
+                    new KeyValuePair<string, string>("-t", "20")
+                }),
+                Successful = true,
+                Error = null
+            };
+
+            var parser = new StandardParser();
+
+            var actual = parser.GetCommand(input);
+
+            Assert.IsTrue(ResultsAreEqual(expected, actual));
+        }
+
+        [TestMethod]
+        public void TwoArgumentsMixedForm()
+        {
+            var input = "get-history --username @datum-earth -t 20";
+
+            var expected = new ParseResult<CommandSkeleton>()
+            {
+                Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("--username", "@datum-earth"),
+                    new KeyValuePair<string, string>("-t", "20")
+                }),
+                Successful = true,
+                Error = null
+            };
+
+            var parser = new StandardParser();
+
+            var actual = parser.GetCommand(input);
+
+            Assert.IsTrue(ResultsAreEqual(expected, actual));
+        }
+
+        [TestMethod]
+        public void OneArgument_Verbose()
+        {
+            var input = "get-history --username \"datum earth\"";
+
+            var expected = new ParseResult<CommandSkeleton>()
+            {
+                Value = new CommandSkeleton("get-history", new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("--username", "\"datum earth\"")
+                }),
+                Successful = true,
+                Error = null
+            };
+
+            var parser = new StandardParser();
+
+            var actual = parser.GetCommand(input);
+
+            Assert.IsTrue(ResultsAreEqual(expected, actual));
+        }
+
         private bool ResultsAreEqual(ParseResult<CommandSkeleton> L, ParseResult<CommandSkeleton> R)
         {
             if (!L.Successful.Equals(R.Successful))

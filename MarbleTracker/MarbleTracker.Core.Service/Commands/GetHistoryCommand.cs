@@ -5,12 +5,18 @@ using System.Text;
 
 namespace MarbleTracker.Core.Service.Commands
 {
-    public class GetHistory : ICommand
+    public class GetHistoryCommand : ICommand
     {
         public string Name => "get-history";
         public string Description => "Use to retrieve n last wagers for a given user, in descending order.";
+        public IEnumerable<KeyValuePair<string, string>> Arguments { get; }
 
-        public T Execute<T>(string[] args)
+        public GetHistoryCommand(IEnumerable<KeyValuePair<string, string>> args)
+        {
+            this.Arguments = args;
+        }
+
+        public T Execute<T>()
         {
             throw new NotImplementedException();
         }

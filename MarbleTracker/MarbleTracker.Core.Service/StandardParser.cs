@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MarbleTracker.Core.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace MarbleTracker.Core.Service
 {
-    public class StandardParser
+    public class StandardParser : ICommandParser<CommandSkeleton>
     {
         private static char[] ENCLOSERS => new char[1] { '"' };
         private static char DELIMITER => ' ';
