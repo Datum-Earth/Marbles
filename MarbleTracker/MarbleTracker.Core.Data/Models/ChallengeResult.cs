@@ -10,5 +10,6 @@ namespace MarbleTracker.Core.Data.Models
         public long WitnessId { get; set; }
         
         public virtual User Witness { get; set; }
+        public virtual ICollection<Transaction> ChallengeResultTransactions { get; set; }
     }
 }

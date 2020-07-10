@@ -11,7 +11,7 @@ namespace MarbleTracker.Core.Data.Models
         public long SourceGroupId { get; set; }
         public long TargetGroupId { get; set; }
 
-        public Group SourceGroup { get; set; }
-        public Group TargetGroup { get; set; }
+        public virtual Group SourceGroup { get; set; }
+        public virtual Group TargetGroup { get; set; }
     }
 }
