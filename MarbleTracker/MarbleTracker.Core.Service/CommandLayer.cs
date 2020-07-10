@@ -40,38 +40,56 @@ namespace MarbleTracker.Core.Service
             }
         }
 
-        public async Task<CommandResult> CreateGroup(string groupName, long userCreatorId)
+        public async Task CreateGroup(string groupName, long userCreatorId)
         {
             using (var ctx = new MarbleContext(this.Options))
             {
-                if (await ctx.Groups.AsNoTracking().SingleOrDefaultAsync(x => x.Name == groupName) == null)
+                var userCreator = ctx.Users.FindAsync(userCreatorId);
+                var newGroup = new Group()
                 {
-                    var userCreator = await ctx.Users.FindAsync(userCreatorId);
-                    if (userCreator is object)
-                    {
-                        var newGroup = new Group()
-                        {
-                            Name = groupName,
-                            DateCreated = DateTimeOffset.UtcNow,
-                            Principal = this.Principal
-                        };
+                    Name = groupName,
+                    DateCreated = DateTimeOffset.UtcNow,
+                    Principal = this.Principal
+                };
 
-                        newGroup.Users.Add(userCreator);
+                newGroup.Users.Add(await userCreator);
 
-                        ctx.Groups.Add(newGroup);
-                        await ctx.SaveChangesAsync();
+                ctx.Groups.Add(newGroup);
+                await ctx.SaveChangesAsync();
+            }
+        }
 
-                        return new CommandResult(true);
-                    }
-                    else
-                    {
-                        return new CommandResult(false, ErrorMessages.USER_INVALID);
-                    }
-                }
-                else
-                {
-                    return new CommandResult(false, ErrorMessages.GROUP_ALREADY_EXISTS);
-                }
+        public async Task RemoveGroup(long groupId)
+        {
+            using (var ctx = new MarbleContext(this.Options))
+            {
+                var group = await ctx.Groups.FindAsync(groupId);
+
+                ctx.Groups.Remove(group);
+            }
+        }
+
+        public async Task AddUserToGroup(long groupId, long userId)
+        {
+            using (var ctx = new MarbleContext(this.Options))
+            {
+                var user = ctx.Users.FindAsync(userId);
+                var group = ctx.Groups.FindAsync(groupId);
+
+                (await group).Users.Add(await user);
+                await ctx.SaveChangesAsync();
+            }
+        }
+
+        public async Task RemoveUserFromGroup(long groupId, long userId)
+        {
+            using (var ctx = new MarbleContext(this.Options))
+            {
+                var user = ctx.Users.FindAsync(userId);
+                var group = ctx.Groups.FindAsync(groupId);
+
+                (await group).Users.Remove(await user);
+                await ctx.SaveChangesAsync();
             }
         }
     }
