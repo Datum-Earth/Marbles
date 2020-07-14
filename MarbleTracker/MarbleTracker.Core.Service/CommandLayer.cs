@@ -4,6 +4,7 @@ using MarbleTracker.Core.Service.ErrorHandling;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace MarbleTracker.Core.Service
         {
             using (var ctx = new MarbleContext(this.Options))
             {
-                var userCreator = ctx.Users.FindAsync(userCreatorId);
+                var userCreator = await ctx.Users.FindAsync(userCreatorId);
                 var newGroup = new Group()
                 {
                     Name = groupName,
@@ -52,7 +53,13 @@ namespace MarbleTracker.Core.Service
                     Principal = this.Principal
                 };
 
-                newGroup.Users.Add(await userCreator);
+                newGroup.Relationships.Add(new UserGroupRelationship() 
+                { 
+                    User = userCreator, 
+                    Group = newGroup,
+                    DateCreated = DateTimeOffset.UtcNow,
+                    Principal = this.Principal
+                });
 
                 ctx.Groups.Add(newGroup);
                 await ctx.SaveChangesAsync();
@@ -73,11 +80,18 @@ namespace MarbleTracker.Core.Service
         {
             using (var ctx = new MarbleContext(this.Options))
             {
-                var user = ctx.Users.FindAsync(userId);
-                var group = ctx.Groups.FindAsync(groupId);
+                if (await ctx.UserGroupRelationships.FirstOrDefaultAsync(x => x.GroupId == groupId && x.UserId == userId) == null)
+                {
+                    await ctx.UserGroupRelationships.AddAsync(new UserGroupRelationship()
+                    {
+                        UserId = userId,
+                        GroupId = groupId,
+                        DateCreated = DateTimeOffset.UtcNow,
+                        Principal = this.Principal
+                    });
 
-                (await group).Users.Add(await user);
-                await ctx.SaveChangesAsync();
+                    await ctx.SaveChangesAsync();
+                }
             }
         }
 
@@ -85,11 +99,13 @@ namespace MarbleTracker.Core.Service
         {
             using (var ctx = new MarbleContext(this.Options))
             {
-                var user = ctx.Users.FindAsync(userId);
-                var group = ctx.Groups.FindAsync(groupId);
+                var targetRelationship = await ctx.UserGroupRelationships.Where(x => x.GroupId == groupId && x.UserId == userId).FirstOrDefaultAsync();
 
-                (await group).Users.Remove(await user);
-                await ctx.SaveChangesAsync();
+                if (targetRelationship is object)
+                {
+                    ctx.UserGroupRelationships.Remove(targetRelationship);
+                    await ctx.SaveChangesAsync();
+                }
             }
         }
     }

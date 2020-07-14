@@ -8,6 +8,6 @@ namespace MarbleTracker.Core.Data.Models
     {
         public string Name { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserGroupRelationship> Relationships { get; set; }
     }
 }

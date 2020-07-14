@@ -18,4 +18,8 @@
     <Folder Include="react\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\MarbleTracker.Core.Service\MarbleTracker.Core.Service.csproj" />
+  </ItemGroup>
+
 </Project>
