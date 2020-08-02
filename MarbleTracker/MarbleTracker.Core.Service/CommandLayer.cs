@@ -50,6 +50,7 @@ namespace MarbleTracker.Core.Service
                 {
                     Name = groupName,
                     DateCreated = DateTimeOffset.UtcNow,
+                    Relationships = new List<UserGroupRelationship>(),
                     Principal = this.Principal
                 };
 

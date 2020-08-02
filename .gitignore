@@ -2,3 +2,5 @@
 **/obj/**
 **/.vs/**
 **/.git/**
+**appsettings.json
+/MarbleTracker/src/MarbleTracker.Core.Web/data.db

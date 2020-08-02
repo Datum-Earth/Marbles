@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using MarbleTracker.Core.Data;
 using MarbleTracker.Core.Data.Models;
 using MarbleTracker.Core.Service.DataService;
+using MarbleTracker.Core.Web.Configuration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace MarbleTracker.Core.Web.Controllers
@@ -17,12 +19,19 @@ namespace MarbleTracker.Core.Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        IConfiguration Configuration;
+
+        public UserController(IConfiguration configuration)
+        {
+            this.Configuration = configuration;
+        }
+
         [HttpPost]
         [Route("")]
         public async Task Post([FromQuery] string username)
         {
             var optionsBuilder = new DbContextOptionsBuilder<MarbleContext>();
-            optionsBuilder.UseSqlite("Data Source=data.db");
+            optionsBuilder.UseSqlite(this.Configuration.GetConnectionString(ApplicationConfigurationKeys.MarbleDatabaseConnectionString));
 
             var svc = new ServiceCore(optionsBuilder.Options, User.Identity.Name);
 
@@ -34,7 +43,7 @@ namespace MarbleTracker.Core.Web.Controllers
         public async Task<User> Get([FromQuery] string username)
         {
             var optionsBuilder = new DbContextOptionsBuilder<MarbleContext>();
-            optionsBuilder.UseSqlite("Data Source=data.db");
+            optionsBuilder.UseSqlite(this.Configuration.GetConnectionString(ApplicationConfigurationKeys.MarbleDatabaseConnectionString));
 
             var svc = new ServiceCore(optionsBuilder.Options, User.Identity.Name);
 
