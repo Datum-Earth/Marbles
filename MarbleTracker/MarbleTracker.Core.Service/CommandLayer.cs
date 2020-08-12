@@ -11,102 +11,106 @@ using System.Threading.Tasks;
 
 namespace MarbleTracker.Core.Service
 {
-    public class CommandLayer
+    public class CommandLayer : IDisposable
     {
-        DbContextOptions<MarbleContext> Options;
+        MarbleContext Context;
         string Principal;
 
         public CommandLayer(DbContextOptions<MarbleContext> options, string principal)
         {
-            this.Options = options;
+            this.Context = new MarbleContext(options);
+            this.Principal = principal;
+        }
+
+        public CommandLayer(MarbleContext context, string principal)
+        {
+            this.Context = context;
             this.Principal = principal;
         }
 
         public async Task CreateUser(string username)
         {
-            using (var ctx = new MarbleContext(this.Options))
+            if (await this.Context.Users.AsNoTracking().SingleOrDefaultAsync(x => x.Username == username) == null)
             {
-                if (await ctx.Users.AsNoTracking().SingleOrDefaultAsync(x => x.Username == username) == null)
+                this.Context.Users.Add(new User()
                 {
-                    ctx.Users.Add(new User()
-                    {
-                        Username = username,
-                        DateCreated = DateTimeOffset.UtcNow,
-                        MarbleAmount = 0,
-                        Principal = this.Principal
-                    });
+                    Username = username,
+                    DateCreated = DateTimeOffset.UtcNow,
+                    MarbleAmount = 0,
+                    Principal = this.Principal
+                });
 
-                    await ctx.SaveChangesAsync();
-                }
+                await this.Context.SaveChangesAsync();
             }
         }
 
         public async Task CreateGroup(string groupName, long userCreatorId)
         {
-            using (var ctx = new MarbleContext(this.Options))
+            var userCreator = await this.Context.Users.FindAsync(userCreatorId);
+            var newGroup = new Group()
             {
-                var userCreator = await ctx.Users.FindAsync(userCreatorId);
-                var newGroup = new Group()
-                {
-                    Name = groupName,
-                    DateCreated = DateTimeOffset.UtcNow,
-                    Relationships = new List<UserGroupRelationship>(),
-                    Principal = this.Principal
-                };
+                Name = groupName,
+                DateCreated = DateTimeOffset.UtcNow,
+                Relationships = new List<UserGroupRelationship>(),
+                Principal = this.Principal
+            };
 
-                newGroup.Relationships.Add(new UserGroupRelationship() 
-                { 
-                    User = userCreator, 
-                    Group = newGroup,
-                    DateCreated = DateTimeOffset.UtcNow,
-                    Principal = this.Principal
-                });
+            newGroup.Relationships.Add(new UserGroupRelationship() 
+            { 
+                User = userCreator, 
+                Group = newGroup,
+                DateCreated = DateTimeOffset.UtcNow,
+                Principal = this.Principal
+            });
 
-                ctx.Groups.Add(newGroup);
-                await ctx.SaveChangesAsync();
-            }
+            this.Context.Groups.Add(newGroup);
+            await this.Context.SaveChangesAsync();
         }
 
         public async Task RemoveGroup(long groupId)
         {
-            using (var ctx = new MarbleContext(this.Options))
-            {
-                var group = await ctx.Groups.FindAsync(groupId);
+            var group = await this.Context.Groups.FindAsync(groupId);
 
-                ctx.Groups.Remove(group);
-            }
+            this.Context.Groups.Remove(group);
         }
 
         public async Task AddUserToGroup(long groupId, long userId)
         {
-            using (var ctx = new MarbleContext(this.Options))
+            if (await this.Context.UserGroupRelationships.FirstOrDefaultAsync(x => x.GroupId == groupId && x.UserId == userId) == null)
             {
-                if (await ctx.UserGroupRelationships.FirstOrDefaultAsync(x => x.GroupId == groupId && x.UserId == userId) == null)
+                await this.Context.UserGroupRelationships.AddAsync(new UserGroupRelationship()
                 {
-                    await ctx.UserGroupRelationships.AddAsync(new UserGroupRelationship()
-                    {
-                        UserId = userId,
-                        GroupId = groupId,
-                        DateCreated = DateTimeOffset.UtcNow,
-                        Principal = this.Principal
-                    });
+                    UserId = userId,
+                    GroupId = groupId,
+                    DateCreated = DateTimeOffset.UtcNow,
+                    Principal = this.Principal
+                });
 
-                    await ctx.SaveChangesAsync();
-                }
+                await this.Context.SaveChangesAsync();
             }
         }
 
         public async Task RemoveUserFromGroup(long groupId, long userId)
         {
-            using (var ctx = new MarbleContext(this.Options))
-            {
-                var targetRelationship = await ctx.UserGroupRelationships.Where(x => x.GroupId == groupId && x.UserId == userId).FirstOrDefaultAsync();
+            var targetRelationship = await this.Context.UserGroupRelationships.Where(x => x.GroupId == groupId && x.UserId == userId).FirstOrDefaultAsync();
 
-                if (targetRelationship is object)
-                {
-                    ctx.UserGroupRelationships.Remove(targetRelationship);
-                    await ctx.SaveChangesAsync();
-                }
+            if (targetRelationship is object)
+            {
+                this.Context.UserGroupRelationships.Remove(targetRelationship);
+                await this.Context.SaveChangesAsync();
+            }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Context.Dispose();
             }
         }
     }

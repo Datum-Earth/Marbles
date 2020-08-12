@@ -12,15 +12,11 @@ namespace MarbleTracker.Core.Service.DataService
 {
     public class ServiceCore : IDisposable
     {
-        string Principal;
-
         CommandLayer CommandService;
         QueryLayer QueryService;
 
         public ServiceCore(DbContextOptions<MarbleContext> options, string principal)
         {
-            this.Principal = principal;
-
             this.CommandService = new CommandLayer(options, principal);
             this.QueryService = new QueryLayer(options, principal);
         }
@@ -74,7 +70,7 @@ namespace MarbleTracker.Core.Service.DataService
         {
             if (disposing)
             {
-                //this.CommandService.Dispose();
+                this.CommandService.Dispose();
                 this.QueryService.Dispose();
             }
         }

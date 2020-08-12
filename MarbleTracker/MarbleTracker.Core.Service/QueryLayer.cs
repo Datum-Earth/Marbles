@@ -20,6 +20,12 @@ namespace MarbleTracker.Core.Service
             this.Principal = principal;
         }
 
+        public QueryLayer(MarbleContext context, string principal)
+        {
+            this.Context = context;
+            this.Principal = principal;
+        }
+
         public async Task<User> GetUserAsync(string username)
         {
             return await this.Context.Users.FirstOrDefaultAsync(x => x.Username == username);
