@@ -4,10 +4,10 @@ using System.Text;
 
 namespace MarbleTracker.Core.Data.Models
 {
-    public enum ChallengeResultStatus
+    public enum ChallengeStatus
     {
-        SourceWon,
-        Tie,
-        TargetWon
+        Lobbying = 0,
+        InProgress = 1,
+        Concluded = 2
     }
 }

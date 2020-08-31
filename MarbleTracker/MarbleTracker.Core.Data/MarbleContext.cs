@@ -14,7 +14,6 @@ namespace MarbleTracker.Core.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<UserGroupRelationship> UserGroupRelationships { get; set; }
         public DbSet<Challenge> Challenges { get; set; }
-        public DbSet<ChallengeResult> ChallengeResults { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Wager> Wagers { get; set; }
     }
 }

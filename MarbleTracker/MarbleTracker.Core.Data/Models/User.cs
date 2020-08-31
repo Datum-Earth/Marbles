@@ -8,7 +8,7 @@ namespace MarbleTracker.Core.Data.Models
     public class User : EntityMetadataBase
     {
         public string Username { get; set; }
-        public long MarbleAmount { get; set; }
+        public decimal MarbleAmount { get; set; }
 
         public virtual ICollection<UserGroupRelationship> Relationships { get; set; }
     }

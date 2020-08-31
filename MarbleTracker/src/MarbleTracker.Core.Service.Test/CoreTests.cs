@@ -1,4 +1,5 @@
 ﻿using MarbleTracker.Core.Data;
+using MarbleTracker.Core.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.Extensions.Options;
@@ -83,6 +84,30 @@ namespace MarbleTracker.Core.Service.Test
 
                 Assert.IsTrue(group is object);
                 Assert.IsTrue(group.Name == groupName);
+            }
+        }
+
+        [TestMethod]
+        public async Task Can_CreateAndDelete_Group()
+        {
+            using (var ctx = new MarbleContext(this.Options))
+            using (var cmd = new CommandLayer(ctx, this.Principal))
+            using (var query = new QueryLayer(ctx, this.Principal))
+            {
+                var username = "datum-earth";
+                await cmd.CreateUser(username);
+
+                var user = await query.GetUserAsync(username);
+
+                await cmd.CreateGroup("test", user.Id);
+                var groupId = ctx.Groups.FirstOrDefault().Id;
+
+                await cmd.RemoveGroup(groupId);
+
+                var actual = await query.GetGroupAsync(groupId);
+                Group expected = null;
+
+                Assert.AreEqual(actual, expected);
             }
         }
     }
